@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "mode": "develop",
+  "request": {
+    "topic": "Schools should distinguish reversible AI pilots from long-term platform commitments."
+  },
+  "constraints": {
+    "do_not_draft": true
+  },
+  "desired_artifacts": ["thesis_slate", "argument_map", "editorial_queries"],
+  "confidentiality": "internal",
+  "assumptions": ["No target venue has been selected."]
+}

@@ -1,0 +1,23 @@
+# Craft research source matrix
+
+Verified 2026-08-15. This is a maintainer record, not an instruction to quote or mechanically reproduce any source. The engine's five-system model is an editorial synthesis informed by these materials, not a framework claimed by any one source.
+
+| Source | Type | Engine rule supported | Important limitation | Confidence |
+|---|---|---|---|---|
+| Purdue OWL, [Toulmin Argument](https://owl.purdue.edu/owl/general_writing/academic_writing/historical_perspectives_on_argumentation/toulmin_argument.html) | University writing guidance | Map claim, grounds, warrant, backing, qualifier, and rebuttal; make the warrant visible | Pedagogical synthesis, not evidence that every public argument needs every element explicitly | High |
+| Harvard Writing Center, [Counterargument](https://writingcenter.fas.harvard.edu/counterargument) | University writing guidance | Test reasonable alternative answers; concede, refine, or narrow when the objection succeeds | Written for academic essays; placement must be adapted to opinion forms | High |
+| Harvard Writing Center, [Introductions](https://writingcenter.fas.harvard.edu/introductions) | University writing guidance | Orient the reader to the problem and stakes; a hook need not be theatrical | Academic context; venue practices vary | High |
+| Harvard Writing Center, [Transitions](https://writingcenter.fas.harvard.edu/transitions) | University writing guidance | State the actual logical relation and use old-to-new information flow | Does not prescribe opinion-specific pacing | High |
+| Harvard Writing Center, [Conclusions](https://writingcenter.fas.harvard.edu/conclusions) | University writing guidance | Move beyond restatement toward implication; action is optional | Academic framing; endings must be venue- and voice-sensitive | High |
+| National Academies, [Communicating Science Effectively](https://doi.org/10.17226/23674) | Consensus report | Define communication goals; adapt to audience knowledge, values, trust, and context; communicate uncertainty | Strongest for science communication; not a universal law of persuasion | High |
+| IPSO, [Editors' Code of Practice](https://www.ipso.co.uk/editors-code-of-practice/) | Professional standards code | Headlines must not be inaccurate, misleading, distorted, or unsupported; distinguish fact, comment, and conjecture | UK regulatory context; still a useful fidelity floor elsewhere | High |
+| Washington Post, [Submit an op-ed](https://helpcenter.washingtonpost.com/hc/en-us/articles/115003675788-Submit-an-op-ed) | Opinion-desk submission guidance | Clear viewpoint plus specific evidence; timeliness, freshness, resonance, standing, disclosure, and rigorous editing matter | One venue's current criteria; verify before venue-specific advice | High |
+| Reuters, [Journalistic Standards and Values](https://reutersagency.com/about/standards-values/) | Newsroom standards | Prefer named sources; cross-check; try to disprove; preserve quote context; avoid hype | Do not import news-balance conventions wholesale into signed opinion | High |
+| Feinberg and Willer, [From Gulf to Bridge](https://doi.org/10.1177/0146167215607842) | Peer-reviewed experiments | Audience-value reframing can outperform arguments made only in the persuader's moral vocabulary | Concentrated in polarized US political contexts; never stereotype readers | Medium-high |
+| Braddock and Dillard, [Meta-analysis of narrative persuasion](https://doi.org/10.1080/03637751.2015.1128555) | Peer-reviewed meta-analysis | Narrative can influence beliefs, attitudes, intentions, and behavior, but should earn its place | Effects are modest and moderators remain uncertain | Medium-high |
+| Zebregs et al., [Narrative versus statistical evidence](https://doi.org/10.1080/10410236.2013.842528) | Peer-reviewed meta-analysis | Match evidence form to purpose; anecdote cannot establish prevalence | Health-communication domain limits generalization | Medium-high |
+| Robertson et al., [Negativity drives online news consumption](https://doi.org/10.1038/s41562-023-01538-4) | Large randomized headline study | Negative wording may raise clicks; engagement is not a fidelity, trust, or quality standard | Upworthy test environment; no general license for alarmism | High for the narrow finding |
+
+## Research-to-runtime rule
+
+Before adding a rule to the runtime skill, maintainers must record: the exact proposition supported, source type, venue or population boundary, possible conflict, counterevidence searched, and whether the rule is mandatory, presumptive, optional, or a veto. Frequency in an exemplar corpus does not by itself justify a universal rule.

@@ -1,0 +1,41 @@
+name: Validate opinion-piece engine
+
+on:
+  pull_request:
+    paths:
+      - "SKILL.md"
+      - "VERSION"
+      - "agents/**"
+      - "references/**"
+      - "schemas/opinion-piece-engine/**"
+      - "tests/opinion-piece-engine/**"
+      - "research/opinion-piece-engine/**"
+      - "scripts/validate_opinion_piece_engine.py"
+      - ".github/workflows/validate-opinion-piece-engine.yml"
+  push:
+    paths:
+      - "SKILL.md"
+      - "VERSION"
+      - "agents/**"
+      - "references/**"
+      - "schemas/opinion-piece-engine/**"
+      - "tests/opinion-piece-engine/**"
+      - "research/opinion-piece-engine/**"
+      - "scripts/validate_opinion_piece_engine.py"
+      - ".github/workflows/validate-opinion-piece-engine.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate package
+        run: python scripts/validate_opinion_piece_engine.py .
+      - name: Test validator
+        run: python -m unittest tests/opinion-piece-engine/test_validator.py

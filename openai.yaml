@@ -1,0 +1,4 @@
+interface:
+  display_name: "Opinion-Piece Engine"
+  short_description: "Develop rigorous, distinctive opinion pieces"
+  default_prompt: "Use $opinion-piece-engine to research, develop, and rigorously revise an opinion piece from my idea and evidence."

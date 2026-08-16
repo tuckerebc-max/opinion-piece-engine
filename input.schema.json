@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/opinion-piece-engine/input.schema.json",
+  "title": "Opinion-Piece Engine Input",
+  "type": "object",
+  "required": ["schema_version", "mode", "request"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "mode": {"enum": ["discover", "develop", "draft", "revise", "pitch", "evaluate"]},
+    "request": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "topic": {"type": ["string", "null"]},
+        "question": {"type": ["string", "null"]},
+        "draft": {"type": ["string", "null"]},
+        "draft_path": {"type": ["string", "null"]},
+        "source_paths": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "author_sample_paths": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "audience": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "commissioning_editor": {"type": ["string", "null"]},
+        "primary_reader": {"type": ["string", "null"]},
+        "affected_people": {"type": ["string", "null"]},
+        "secondary_audiences": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "venue": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": ["string", "null"]},
+        "url": {"type": ["string", "null"], "format": "uri"},
+        "form": {"type": ["string", "null"]},
+        "requirements_verified_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "author": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "standing": {"type": ["string", "null"]},
+        "conflicts": {"type": "array", "items": {"type": "string"}},
+        "voice_priorities": {"type": "array", "items": {"type": "string"}, "maxItems": 5}
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "word_target": {"type": ["integer", "null"], "minimum": 1},
+        "deadline": {"type": ["string", "null"], "format": "date-time"},
+        "must_include": {"type": "array", "items": {"type": "string"}},
+        "must_avoid": {"type": "array", "items": {"type": "string"}},
+        "do_not_draft": {"type": "boolean", "default": false}
+      }
+    },
+    "desired_artifacts": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": ["brief", "research_record", "thesis_slate", "argument_map", "component_plan", "opening_sequences", "draft", "headline_slate", "venue_fit", "voice_brief", "scorecard", "verification_ledger", "editorial_queries"]
+      }
+    },
+    "confidentiality": {"enum": ["public", "internal", "confidential", "restricted"]},
+    "assumptions": {"type": "array", "items": {"type": "string"}}
+  }
+}

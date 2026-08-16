@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/opinion-piece-engine/output.schema.json",
+  "title": "Opinion-Piece Engine Output Package",
+  "type": "object",
+  "required": ["schema_version", "engine", "engine_version", "mode", "release_status", "assumptions", "artifacts"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "engine": {"const": "opinion-piece-engine"},
+    "engine_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$"},
+    "created_at": {"type": ["string", "null"], "format": "date-time"},
+    "mode": {"enum": ["discover", "develop", "draft", "revise", "pitch", "evaluate"]},
+    "release_status": {"enum": ["blocked", "research_needed", "editorial_queries_open", "venue_check_needed", "ready_for_editorial_review"]},
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "thesis_candidates": {"type": "array", "items": {"$ref": "#/$defs/thesis"}},
+    "selected_thesis_id": {"type": ["string", "null"]},
+    "claims": {"type": "array", "items": {"$ref": "#/$defs/claim"}},
+    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "components": {"type": "array", "items": {"$ref": "#/$defs/component"}},
+    "openings": {"type": "array", "items": {"$ref": "#/$defs/opening"}},
+    "draft": {"type": ["string", "null"]},
+    "headlines": {"type": "array", "items": {"$ref": "#/$defs/headline"}},
+    "editorial_queries": {"type": "array", "items": {"$ref": "#/$defs/query"}},
+    "scorecard": {"type": ["object", "null"]},
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/artifact"}
+    }
+  },
+  "$defs": {
+    "thesis": {
+      "type": "object",
+      "required": ["id", "text", "claim_type", "decision"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^T[0-9]+$"},
+        "text": {"type": "string", "minLength": 1},
+        "claim_type": {"enum": ["causal", "prescriptive", "evaluative", "moral", "predictive", "reframing", "synthesis", "other"]},
+        "decision": {"enum": ["selected", "rejected", "deferred"]},
+        "rationale": {"type": ["string", "null"]},
+        "strongest_rival": {"type": ["string", "null"]},
+        "research_effect": {"enum": ["confirmed", "narrowed", "reframed", "killed", "not_researched"]}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "required": ["id", "text", "claim_type", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^C[0-9]+$"},
+        "text": {"type": "string"},
+        "claim_type": {"type": "string"},
+        "evidence_ids": {"type": "array", "items": {"type": "string", "pattern": "^E[0-9]+$"}},
+        "warrant": {"type": ["string", "null"]},
+        "qualification": {"type": ["string", "null"]},
+        "strongest_challenge": {"type": ["string", "null"]},
+        "status": {"enum": ["supported", "verify", "revise", "cut"]}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["id", "supported_proposition", "source_locator", "grade", "verification_status"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^E[0-9]+$"},
+        "supported_proposition": {"type": "string"},
+        "source_locator": {"type": "string"},
+        "author_publisher": {"type": ["string", "null"]},
+        "published_at": {"type": ["string", "null"]},
+        "accessed_at": {"type": ["string", "null"]},
+        "source_type": {"type": ["string", "null"]},
+        "design_population": {"type": ["string", "null"]},
+        "interest_conflict_funder": {"type": ["string", "null"]},
+        "limitations": {"type": ["string", "null"]},
+        "permission_status": {"enum": ["not_applicable", "unknown", "requested", "granted", "denied"]},
+        "grade": {"enum": ["A", "B", "C", "D"]},
+        "verification_status": {"enum": ["supplied", "retrieved", "inspected", "corroborated", "verified", "rejected"]},
+        "verifier": {"type": ["string", "null"]}
+      }
+    },
+    "component": {
+      "type": "object",
+      "required": ["name", "decision", "rationale"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string"},
+        "decision": {"enum": ["include", "omit", "compress", "defer"]},
+        "rationale": {"type": "string"},
+        "risk": {"type": ["string", "null"]}
+      }
+    },
+    "opening": {
+      "type": "object",
+      "required": ["id", "strategy", "sequence", "promise_audit"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^O[0-9]+$"},
+        "strategy": {"type": "string"},
+        "sequence": {"type": "string"},
+        "promise_audit": {"type": "string"},
+        "selected": {"type": "boolean"}
+      }
+    },
+    "headline": {
+      "type": "object",
+      "required": ["id", "artifact_type", "text", "fidelity_veto", "recommended"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^H[0-9]+$"},
+        "artifact_type": {"enum": ["working_title", "pitch_subject", "editorial_headline", "published_headline", "deck"]},
+        "text": {"type": "string"},
+        "family": {"type": ["string", "null"]},
+        "fidelity_veto": {"type": "boolean"},
+        "veto_reasons": {"type": "array", "items": {"type": "string"}},
+        "recommended": {"type": "boolean"}
+      }
+    },
+    "query": {
+      "type": "object",
+      "required": ["id", "query", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^Q[0-9]+$"},
+        "query": {"type": "string"},
+        "why_it_matters": {"type": ["string", "null"]},
+        "owner": {"type": ["string", "null"]},
+        "status": {"enum": ["open", "resolved", "deferred"]}
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {"type": ["string", "null"]},
+        "status": {"enum": ["not_requested", "pending", "complete", "blocked"]},
+        "sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}
